@@ -9,12 +9,10 @@ const passport = require("passport");
 const helmet = require("helmet");
 const hpp = require("hpp");
 const redis = require("redis");
-const RedisStore = require("connect-redis").default;
-
+const { RedisStore } = require('connect-redis');
 dotenv.config();
 const redisClient = redis.createClient({
-  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-  password: process.env.REDIS_PASSWORD,
+  url: process.env.REDIS_URL,
 });
 redisClient.connect().catch(console.error);
 const pageRouter = require("./routes/page");
